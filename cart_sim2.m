@@ -41,7 +41,7 @@ k4(i,:) = [y(i,2),YDD4(i,1),y(i,4),YDD4(i,2), y(i,6), YDD4(i,3)];
 y(i+1,:) = y(i,:) + (deltaTime/6)*(k1(i,:)+2*k2(i,:)+2*k3(i,:)+k4(i,:));
 
 end
-figure (1)
+figure('units','normalized','outerposition',[0 0 1 1])
 for i=1:(tEnd/deltaTime+1)
     clf
 hold on
