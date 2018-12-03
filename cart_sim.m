@@ -10,9 +10,9 @@ k = 10;
 %n = 16;
 
 % initial conditions
-y1 = 0;
+y1 = 3;
 y2 = 0;
-y3 = 45*pi/180;
+y3 = 0*pi/180;
 y4 = 0;
 
 dt = .01;
