@@ -1,14 +1,14 @@
 clear all
 
-mr = .25;      %mass of the rod
-mc = 1;        %mass of the cart
-L = .5;        %length of the rod
-k = 10;        %spring constant
+mr = .25; %mass of the rod
+mc = 1; %mass of the cart
+L = .5; %length of the rod
+k = 10; %spring constant
 
-y1 = 1;        %x
-y2 = 0;        %xdot
+y1 = 1; %x
+y2 = 0; %xdot
 y3 = 0*pi/180; %theta
-y4 = 0;        %thetadot
+y4 = 0; %thetadot
 
 deltaTime = .01;
 tmax = 5;
@@ -49,7 +49,6 @@ line([0,pendStart(1)],[0, pendStart(2)],'Color','black', 'linewidth', 2)
 line([pendStart(1), pendEnd(1)],[pendStart(2), pendEnd(2)],'Color','blue', 'linewidth', 3)
 plot(pendEndStore(1,1:end),pendEndStore(2,1:end),'Color','cyan')
 %legend('cart', 'rod 1', 'rod 2', 'spring', 'trajectory') %legend is too
-%resource intensive to plot in real time this way
 frameTime = toc;
 axis([-3,3,-2,2]);
 pause(deltaTime-frameTime)
