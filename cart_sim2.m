@@ -2,21 +2,21 @@ clear all
 close all
 
 mr1 = .25; %mass rod 1
-mr2 = .5; %mass rod 2
+mr2 = .25; %mass rod 2
 mc = 1; %mass cart
 L1 = .5; %length rod 1
-L2 = 1; %length rod 2
+L2 = .5; %length rod 2
 k = 10; %spring constant
 
-y1 = 0; %x
+y1 = 1; %x
 y2 = 0; %xdot
-y3 = 90*pi/180; %theta 1
+y3 = 0*pi/180; %theta 1
 y4 = 0; %thetadot
-y5 = 90*pi/180; %theta 2
+y5 = 0*pi/180; %theta 2
 y6 = 0; %thetadot
 
 deltaTime = .01; %delta time
-tEnd = 5;
+tEnd = 10;
 
 y(1,:) = [y1,y2,y3,y4,y5,y6];
 
@@ -60,8 +60,8 @@ line([pend2Start(1), pend2End(1)],[pend2Start(2), pend2End(2)],'Color','red', 'l
 plot(pend2EndStore(1,1:end),pend2EndStore(2,1:end),'Color','cyan')
 
 frameTime = toc;
-axis([-5,5,-3,3]);
+axis([-3,3,-2,2]);
 hold off
-pause(deltaTime-frameTime) %pause so the sim plays back in real time
+pause((deltaTime-frameTime)) %pause so the sim plays back in real time
 
 end
