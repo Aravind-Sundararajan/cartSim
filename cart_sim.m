@@ -39,15 +39,15 @@ for i=1:(tmax/deltaTime+1)
     clf
 hold on
 tic
-cartStart = [y(i,1),0]
-cartEnd = cartStart + [.5,0]
-pendStart = cartStart + [.25,0]
-pendEnd = pendStart +L*[sin(y(i,3)),-cos(y(i,3))]
+cartStart = [y(i,1),0];
+cartEnd = cartStart + [.5,0];
+pendStart = cartStart + [.25,0];
+pendEnd = pendStart +L*[sin(y(i,3)),-cos(y(i,3))];
 pendEndStore(:,i) = pendEnd;
-line([cartStart(1), cartEnd(1)],[cartStart(2), cartEnd(2)],'Color','green', 'linewidth', 15)
-line([0,pendStart(1)],[0, pendStart(2)],'Color','black', 'linewidth', 2)
-line([pendStart(1), pendEnd(1)],[pendStart(2), pendEnd(2)],'Color','blue', 'linewidth', 3)
-plot(pendEndStore(1,1:end),pendEndStore(2,1:end),'Color','cyan')
+line([cartStart(1), cartEnd(1)],[cartStart(2), cartEnd(2)],'Color','green', 'linewidth', 15);
+line([0,pendStart(1)],[0, pendStart(2)],'Color','black', 'linewidth', 2);
+line([pendStart(1), pendEnd(1)],[pendStart(2), pendEnd(2)],'Color','blue', 'linewidth', 3);
+plot(pendEndStore(1,1:end),pendEndStore(2,1:end),'Color','cyan');
 %legend('cart', 'rod 1', 'rod 2', 'spring', 'trajectory') %legend is too
 %resource intensive to plot in real time this way
 frameTime = toc;

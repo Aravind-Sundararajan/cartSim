@@ -47,20 +47,20 @@ for i=1:(tEnd/deltaTime+1)
 hold on
 tic
 %construct the position vectors
-cartStart = [y(i,1),0]
-cartEnd = cartStart + [.5,0]
-pend1Start = cartStart + [.25,0]
-pend1End = pend1Start +L1*[sin(y(i,3)),-cos(y(i,3))]
+cartStart = [y(i,1),0];
+cartEnd = cartStart + [.5,0];
+pend1Start = cartStart + [.25,0];
+pend1End = pend1Start +L1*[sin(y(i,3)),-cos(y(i,3))];
 pend2Start = pend1End;
-pend2End = pend2Start +L2*[sin(y(i,5)),-cos(y(i,5))]
+pend2End = pend2Start +L2*[sin(y(i,5)),-cos(y(i,5))];
 pend2EndStore(:,i) = pend2End;
 
 %plot the objects
-line([cartStart(1), cartEnd(1)],[cartStart(2), cartEnd(2)],'Color','green', 'linewidth', 15)
-line([0,pend1Start(1)],[0, pend1Start(2)],'Color','black', 'linewidth', 2)
-line([pend1Start(1), pend1End(1)],[pend1Start(2), pend1End(2)],'Color','blue', 'linewidth', 3)
-line([pend2Start(1), pend2End(1)],[pend2Start(2), pend2End(2)],'Color','red', 'linewidth', 3)
-plot(pend2EndStore(1,1:end),pend2EndStore(2,1:end),'Color','cyan')
+line([cartStart(1), cartEnd(1)],[cartStart(2), cartEnd(2)],'Color','green', 'linewidth', 15);
+line([0,pend1Start(1)],[0, pend1Start(2)],'Color','black', 'linewidth', 2);
+line([pend1Start(1), pend1End(1)],[pend1Start(2), pend1End(2)],'Color','blue', 'linewidth', 3);
+line([pend2Start(1), pend2End(1)],[pend2Start(2), pend2End(2)],'Color','red', 'linewidth', 3);
+plot(pend2EndStore(1,1:end),pend2EndStore(2,1:end),'Color','cyan');
 %legend('cart', 'rod 1', 'rod 2', 'spring', 'trajectory') %legend is too
 %resource intensive to plot in real time this way
 frameTime = toc;
