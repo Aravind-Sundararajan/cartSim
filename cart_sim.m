@@ -19,17 +19,17 @@ y(1,:) = [y1,y2,y3,y4];
 %following example from: http://lpsa.swarthmore.edu/NumInt/NumIntFourth.html
 for t=1:(tmax/deltaTime+1)
     
-    q1(t,:) = dynamics_fxn(y(t,:),mr,mc,L,k);
-    k1(t,:) = [y(t,2),q1(t,1),y(t,4),q1(t,2)];
+    YDD1(t,:) = dynamics_fxn(y(t,:),mr,mc,L,k);
+    k1(t,:) = [y(t,2),YDD1(t,1),y(t,4),YDD1(t,2)];
     
-    q2(t,:) = dynamics_fxn(y(t,:)+k1(t,:)*(deltaTime/2),mr,mc,L,k);
-    k2(t,:) = [y(t,2),q2(t,1),y(t,4),q2(t,2)];
+    YDD2(t,:) = dynamics_fxn(y(t,:)+k1(t,:)*(deltaTime/2),mr,mc,L,k);
+    k2(t,:) = [y(t,2),YDD2(t,1),y(t,4),YDD2(t,2)];
     
-    q3(t,:) = dynamics_fxn(y(t,:)+k2(t,:)*(deltaTime/2),mr,mc,L,k);
-    k3(t,:) = [y(t,2),q3(t,1),y(t,4),q3(t,2)];
+    YDD3(t,:) = dynamics_fxn(y(t,:)+k2(t,:)*(deltaTime/2),mr,mc,L,k);
+    k3(t,:) = [y(t,2),YDD3(t,1),y(t,4),YDD3(t,2)];
     
-    q4(t,:) = dynamics_fxn(y(t,:)+k3(t,:)*(deltaTime),mr,mc,L,k);
-    k4(t,:) = [y(t,2),q4(t,1),y(t,4),q4(t,2)];
+    YDD4(t,:) = dynamics_fxn(y(t,:)+k3(t,:)*(deltaTime),mr,mc,L,k);
+    k4(t,:) = [y(t,2),YDD4(t,1),y(t,4),YDD4(t,2)];
     
     y(t+1,:) = y(t,:) + (deltaTime/6)*(k1(t,:)+2*k2(t,:)+2*k3(t,:)+k4(t,:));
     

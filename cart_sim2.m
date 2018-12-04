@@ -3,7 +3,7 @@ clear all
 %attached to the cart.
 
 mr1 = .25; %mass rod 1
-mr2 = .25; %mass rod 2
+mr2 = .05; %mass rod 2
 mc = 1;    %mass cart
 L1 = .5;   %length rod 1
 L2 = .5;   %length rod 2
