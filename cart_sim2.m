@@ -3,17 +3,17 @@ clear all
 %attached to the cart.
 
 mr1 = .25; %mass rod 1
-mr2 = .05; %mass rod 2
+mr2 = .1; %mass rod 2
 mc = 1;    %mass cart
 L1 = .5;   %length rod 1
-L2 = .5;   %length rod 2
+L2 = .25;   %length rod 2
 k = 10;    %spring constant
 
 y1 = 1; %x
 y2 = 0; %xdot
-y3 = 180*pi/180; %theta 1
+y3 = 0*pi/180; %theta 1
 y4 = 0; %thetadot
-y5 = 180*pi/180; %theta 2
+y5 = 0*pi/180; %theta 2
 y6 = 0; %thetadot
 
 deltaTime = .006; %delta time
