@@ -24,50 +24,50 @@ y(1,:) = [y1,y2,y3,y4,y5,y6];
 
 %4th order Runge-Kutta, could also use euler's method (1st order RK)
 %following example from: http://lpsa.swarthmore.edu/NumInt/NumIntFourth.html
-for i=1:(tEnd/deltaTime+1) 
-
-YDD1(i,:) = dynamics_fxn2(y(i,:),mr1,mr2,mc,L1,L2,k); 
-k1(i,:) = [y(i,2),YDD1(i,1),y(i,4),YDD1(i,2), y(i,6), YDD1(i,3)];
-
-YDD2(i,:) = dynamics_fxn2(y(i,:)+k1(i,:)*(deltaTime/2),mr1,mr2,mc,L1,L2,k); 
-k2(i,:) = [y(i,2),YDD2(i,1),y(i,4),YDD2(i,2), y(i,6), YDD2(i,3)];
-
-YDD3(i,:) = dynamics_fxn2(y(i,:)+k2(i,:)*(deltaTime/2),mr1,mr2,mc,L1,L2,k); 
-k3(i,:) = [y(i,2),YDD3(i,1),y(i,4),YDD3(i,2), y(i,6), YDD3(i,3)];
-
-YDD4(i,:) = dynamics_fxn2(y(i,:)+k3(i,:)*(deltaTime),mr1,mr2,mc,L1,L2,k); 
-k4(i,:) = [y(i,2),YDD4(i,1),y(i,4),YDD4(i,2), y(i,6), YDD4(i,3)];
-
-y(i+1,:) = y(i,:) + (deltaTime/6)*(k1(i,:)+2*k2(i,:)+2*k3(i,:)+k4(i,:));
-
+for t=1:(tEnd/deltaTime+1)
+    
+    YDD1(t,:) = dynamics_fxn2(y(t,:),mr1,mr2,mc,L1,L2,k);
+    k1(t,:) = [y(t,2),YDD1(t,1),y(t,4),YDD1(t,2), y(t,6), YDD1(t,3)];
+    
+    YDD2(t,:) = dynamics_fxn2(y(t,:)+k1(t,:)*(deltaTime/2),mr1,mr2,mc,L1,L2,k);
+    k2(t,:) = [y(t,2),YDD2(t,1),y(t,4),YDD2(t,2), y(t,6), YDD2(t,3)];
+    
+    YDD3(t,:) = dynamics_fxn2(y(t,:)+k2(t,:)*(deltaTime/2),mr1,mr2,mc,L1,L2,k);
+    k3(t,:) = [y(t,2),YDD3(t,1),y(t,4),YDD3(t,2), y(t,6), YDD3(t,3)];
+    
+    YDD4(t,:) = dynamics_fxn2(y(t,:)+k3(t,:)*(deltaTime),mr1,mr2,mc,L1,L2,k);
+    k4(t,:) = [y(t,2),YDD4(t,1),y(t,4),YDD4(t,2), y(t,6), YDD4(t,3)];
+    
+    y(t+1,:) = y(t,:) + (deltaTime/6)*(k1(t,:)+2*k2(t,:)+2*k3(t,:)+k4(t,:));
+    
 end
 figure('units','normalized','outerposition',[0 0 1 1])
-for i=1:(tEnd/deltaTime+1)
+for t=1:(tEnd/deltaTime+1)
     clf
-hold on
-tic
-%construct the position vectors
-cartStart = [y(i,1),0];
-cartEnd = cartStart + [.5,0];
-pend1Start = cartStart + [.25,0];
-pend1End = pend1Start +L1*[sin(y(i,3)),-cos(y(i,3))];
-pend2Start = pend1End;
-pend2End = pend2Start +L2*[sin(y(i,5)),-cos(y(i,5))];
-pend2EndStore(:,i) = pend2End;
-
-%plot the objects
-line([cartStart(1), cartEnd(1)],[cartStart(2), cartEnd(2)],'Color','green', 'linewidth', 15);
-line([0,pend1Start(1)],[0, pend1Start(2)],'Color','black', 'linewidth', 2);
-line([pend1Start(1), pend1End(1)],[pend1Start(2), pend1End(2)],'Color','blue', 'linewidth', 3);
-line([pend2Start(1), pend2End(1)],[pend2Start(2), pend2End(2)],'Color','red', 'linewidth', 3);
-plot(pend2EndStore(1,1:end),pend2EndStore(2,1:end),'Color','cyan');
-%legend('cart', 'rod 1', 'rod 2', 'spring', 'trajectory') %legend is too
-%resource intensive to plot in real time this way
-frameTime = toc;
-axis([-3,3,-2,2]);
-if (deltaTime-frameTime)>0
-pause((deltaTime-frameTime)) %pause so the sim plays back in real time
-else
-pause(10^-10)%in case the deltaTime is too small to play back in real time just print to screen anyway
-end
+    hold on
+    tic
+    %construct the position vectors
+    cartStart = [y(t,1),0];
+    cartEnd = cartStart + [.5,0];
+    pend1Start = cartStart + [.25,0];
+    pend1End = pend1Start +L1*[sin(y(t,3)),-cos(y(t,3))];
+    pend2Start = pend1End;
+    pend2End = pend2Start +L2*[sin(y(t,5)),-cos(y(t,5))];
+    pend2EndStore(:,t) = pend2End;
+    
+    %plot the objects
+    line([cartStart(1), cartEnd(1)],[cartStart(2), cartEnd(2)],'Color','green', 'linewidth', 15);
+    line([0,pend1Start(1)],[0, pend1Start(2)],'Color','black', 'linewidth', 2);
+    line([pend1Start(1), pend1End(1)],[pend1Start(2), pend1End(2)],'Color','blue', 'linewidth', 3);
+    line([pend2Start(1), pend2End(1)],[pend2Start(2), pend2End(2)],'Color','red', 'linewidth', 3);
+    plot(pend2EndStore(1,1:end),pend2EndStore(2,1:end),'Color','cyan');
+    %legend('cart', 'rod 1', 'rod 2', 'spring', 'trajectory') %legend is too
+    %resource intensive to plot in real time this way
+    frameTime = toc;
+    axis([-3,3,-2,2]);
+    if (deltaTime-frameTime)>0
+        pause((deltaTime-frameTime)) %pause so the sim plays back in real time
+    else
+        pause(10^-10)%in case the deltaTime is too small to play back in real time just print to screen anyway
+    end
 end
